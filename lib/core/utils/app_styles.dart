@@ -11,19 +11,16 @@ abstract class AppStyles {
   static final sylesPoppinsSemiBold24 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 24,
-    fontFamily: 'Poppins',
     color: AppColors.kBlackColor,
   );
   static final sylesPoppinsMeduim24 = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 24,
-    fontFamily: 'Poppins',
     color: AppColors.kGreyColor,
   );
   static final sylesPoppinsRegular12 = TextStyle(
     fontWeight: FontWeight.normal,
     fontSize: 12,
-    fontFamily: 'Poppins',
     color: AppColors.kDeepGreyColor,
   );
 }
