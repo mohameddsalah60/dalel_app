@@ -23,7 +23,7 @@ class CustomNavBar extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: Text(
           AppStrings.skip,
-          style: AppStyles.sylesPoppinsRegular12.copyWith(
+          style: AppStyles.sylesPoppinsRegular14.copyWith(
             fontSize: 16,
             color: AppColors.kDeepBlackColor,
           ),

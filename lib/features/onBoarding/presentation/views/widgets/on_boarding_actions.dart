@@ -1,7 +1,12 @@
+import 'package:dalel_app/constants.dart';
+import 'package:dalel_app/core/database/cache/cache_helper.dart';
+import 'package:dalel_app/core/services/service_locator.dart';
 import 'package:dalel_app/core/utils/app_colors.dart';
+import 'package:dalel_app/core/utils/app_router.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OnBoardingActions extends StatelessWidget {
   const OnBoardingActions(
@@ -16,10 +21,16 @@ class OnBoardingActions extends StatelessWidget {
       children: [
         CustomButton(
           onPressed: () {
-            pageController.nextPage(
-              duration: const Duration(microseconds: 200),
-              curve: Curves.bounceIn,
-            );
+            if (currnetPageIndex != 2) {
+              pageController.nextPage(
+                duration: const Duration(microseconds: 200),
+                curve: Curves.bounceIn,
+              );
+            } else {
+              GoRouter.of(context).pushReplacement(AppRouter.kSignUp);
+              getIt<CacheHelper>()
+                  .saveData(key: kisOnBoardingVisited, value: true);
+            }
           },
           text: currnetPageIndex != 2
               ? AppStrings.next

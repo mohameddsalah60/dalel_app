@@ -18,9 +18,9 @@ abstract class AppStyles {
     fontSize: 24,
     color: AppColors.kDeepBlackColor,
   );
-  static final sylesPoppinsRegular12 = TextStyle(
+  static final sylesPoppinsRegular14 = TextStyle(
     fontWeight: FontWeight.normal,
-    fontSize: 12,
+    fontSize: 14,
     color: AppColors.kDeepGreyColor,
   );
   static final sylesPoppinsLight18 = TextStyle(
