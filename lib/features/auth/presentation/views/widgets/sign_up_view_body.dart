@@ -1,6 +1,8 @@
+import 'package:dalel_app/core/utils/app_router.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'custom_signup_form.dart';
 import 'have_an_account_widget.dart';
@@ -30,7 +32,13 @@ class SignUpViewBody extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            const HaveAnAccountWidget(),
+            HaveAnAccountWidget(
+              text1: AppStrings.alreadyHaveAnAccount,
+              text2: AppStrings.signIn,
+              onTap: () {
+                GoRouter.of(context).pushReplacement(AppRouter.kSignIn);
+              },
+            ),
           ],
         ),
       ),
