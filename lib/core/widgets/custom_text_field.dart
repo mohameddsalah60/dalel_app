@@ -28,8 +28,9 @@ class CustomTextField extends StatelessWidget {
       },
       onChanged: onChanged,
       style: style ??
-          AppStyles.sylesPoppinsRegular14.copyWith(
+          AppStyles.sylesPoppinsSemiBold24.copyWith(
             color: const Color(0xff07122E),
+            fontSize: 18,
           ),
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
