@@ -2,6 +2,7 @@ import 'package:dalel_app/core/services/service_locator.dart';
 import 'package:dalel_app/features/auth/presentation/auth_cubit/cubit/auth_cubit.dart';
 import 'package:dalel_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:dalel_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:dalel_app/features/home/presentation/views/home_view.dart';
 import 'package:dalel_app/features/onBoarding/presentation/views/on_boarding_view.dart';
 import 'package:dalel_app/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,7 @@ abstract class AppRouter {
   static const kOnBoarding = '/onBoarding';
   static const kSignUp = '/signUp';
   static const kSignIn = '/signIn';
+  static const kHomeView = '/homeView';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -30,7 +32,14 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kSignIn,
-        builder: (context, state) => const SignInView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const SignInView(),
+        ),
+      ),
+      GoRoute(
+        path: kHomeView,
+        builder: (context, state) => const HomeView(),
       ),
     ],
   );

@@ -17,15 +17,25 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
+    isVisisted();
+
+    super.initState();
+  }
+
+  void isVisisted() {
     bool isOnBoardingVisisted =
-        getIt<CacheHelper>().getDataBool(key: kisOnBoardingVisited) ?? false;
+        getIt<CacheHelper>().getDataBool(key: kIsOnBoardingVisited) ?? false;
+    bool isLogin =
+        getIt<CacheHelper>().getDataBool(key: kIsSuccessLogin) ?? false;
     if (isOnBoardingVisisted == true) {
-      delayedGoRouter(path: AppRouter.kSignUp);
+      if (isLogin == false) {
+        delayedGoRouter(path: AppRouter.kSignUp);
+      } else {
+        delayedGoRouter(path: AppRouter.kSignIn);
+      }
     } else {
       delayedGoRouter(path: AppRouter.kOnBoarding);
     }
-
-    super.initState();
   }
 
   void delayedGoRouter({required String path}) {

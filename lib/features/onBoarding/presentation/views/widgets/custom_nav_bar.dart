@@ -17,7 +17,7 @@ class CustomNavBar extends StatelessWidget {
       onTap: () async {
         GoRouter.of(context).pushReplacement(AppRouter.kSignUp);
         await getIt<CacheHelper>()
-            .saveData(key: kisOnBoardingVisited, value: true);
+            .saveData(key: kIsOnBoardingVisited, value: true);
       },
       child: Align(
         alignment: Alignment.centerRight,

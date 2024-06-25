@@ -13,6 +13,7 @@ class AuthCubit extends Cubit<AuthState> {
   String? emailAddress;
   String? password;
   GlobalKey<FormState> signupFormKey = GlobalKey();
+  GlobalKey<FormState> signInFormKey = GlobalKey();
   bool? termsAndConditionCheckBoxValue = false;
   bool? obscurePasswordTextValue = true;
 

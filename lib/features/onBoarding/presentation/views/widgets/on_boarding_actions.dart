@@ -29,7 +29,7 @@ class OnBoardingActions extends StatelessWidget {
             } else {
               GoRouter.of(context).pushReplacement(AppRouter.kSignUp);
               getIt<CacheHelper>()
-                  .saveData(key: kisOnBoardingVisited, value: true);
+                  .saveData(key: kIsOnBoardingVisited, value: true);
             }
           },
           text: currnetPageIndex != 2
