@@ -1,8 +1,11 @@
+import 'package:dalel_app/core/utils/app_colors.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/utils/app_styles.dart';
 import 'package:dalel_app/core/widgets/custom_button.dart';
 import 'package:dalel_app/core/widgets/custom_text_field.dart';
+import 'package:dalel_app/features/auth/presentation/auth_cubit/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'terms_and_condition_signup.dart';
 
@@ -11,50 +14,84 @@ class CustomSignupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        children: [
-          const CustomTextField(
-            labelText: 'First Name',
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
+        return Form(
+          key: authCubit.signupFormKey,
+          child: Column(
+            children: [
+              CustomTextField(
+                labelText: 'First Name',
+                onChanged: (value) {
+                  authCubit.firstName = value;
+                },
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              CustomTextField(
+                labelText: 'Last Name',
+                onChanged: (value) {
+                  authCubit.lastName = value;
+                },
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              CustomTextField(
+                labelText: 'Email Address',
+                onChanged: (value) {
+                  authCubit.emailAddress = value;
+                },
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              CustomTextField(
+                labelText: 'Password',
+                obscureText: authCubit.obscurePasswordTextValue,
+                onChanged: (value) {
+                  authCubit.password = value;
+                },
+                style: AppStyles.sylesPoppinsSemiBold24
+                    .copyWith(fontWeight: FontWeight.w900, fontSize: 16),
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      authCubit.obscurePasswordText();
+                    },
+                    icon: const Icon(
+                      Icons.visibility_outlined,
+                      color: Color(0xff999999),
+                    )),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              const TermsAndConditionSignUp(),
+              const SizedBox(
+                height: 88,
+              ),
+              CustomButton(
+                text: AppStrings.signUp,
+                background: authCubit.termsAndConditionCheckBoxValue == false
+                    ? AppColors.kGreyColor
+                    : null,
+                onPressed: () {
+                  if (authCubit.termsAndConditionCheckBoxValue == true) {
+                    if (authCubit.signupFormKey.currentState!.validate()) {
+                      authCubit.signUpUserWithEmailAndPassword();
+                    }
+                  }
+                },
+              ),
+            ],
           ),
-          const SizedBox(
-            height: 24,
-          ),
-          const CustomTextField(
-            labelText: 'Last Name',
-          ),
-          const SizedBox(
-            height: 24,
-          ),
-          const CustomTextField(
-            labelText: 'Email Address',
-          ),
-          const SizedBox(
-            height: 24,
-          ),
-          CustomTextField(
-            labelText: 'Password',
-            obscureText: true,
-            style: AppStyles.sylesPoppinsSemiBold24.copyWith(
-              fontWeight: FontWeight.w900,
-            ),
-            suffixIcon: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.visibility_outlined,
-                  color: Color(0xff999999),
-                )),
-          ),
-          const SizedBox(
-            height: 24,
-          ),
-          const TermsAndConditionSignUp(),
-          const SizedBox(
-            height: 88,
-          ),
-          const CustomButton(text: AppStrings.signUp),
-        ],
-      ),
+        );
+      },
     );
   }
 }

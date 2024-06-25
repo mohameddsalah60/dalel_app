@@ -15,29 +15,35 @@ class SignUpViewBody extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-        child: ListView(
-          children: [
-            Align(
-              child: Text(
-                AppStrings.appName,
-                style: AppStyles.sylesPacificoRegular20.copyWith(
-                  fontSize: 116,
-                ),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Align(
+                    child: Text(
+                      AppStrings.appName,
+                      style: AppStyles.sylesPacificoRegular20.copyWith(
+                        fontSize: 116,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  const CustomSignupForm(),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  HaveAnAccountWidget(
+                    text1: AppStrings.alreadyHaveAnAccount,
+                    text2: AppStrings.signIn,
+                    onTap: () {
+                      GoRouter.of(context).pushReplacement(AppRouter.kSignIn);
+                    },
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(
-              height: 32,
-            ),
-            const CustomSignupForm(),
-            const SizedBox(
-              height: 16,
-            ),
-            HaveAnAccountWidget(
-              text1: AppStrings.alreadyHaveAnAccount,
-              text2: AppStrings.signIn,
-              onTap: () {
-                GoRouter.of(context).pushReplacement(AppRouter.kSignIn);
-              },
             ),
           ],
         ),

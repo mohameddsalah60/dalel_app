@@ -27,6 +27,7 @@ class CustomSigninForm extends StatelessWidget {
             obscureText: true,
             style: AppStyles.sylesPoppinsSemiBold24.copyWith(
               fontWeight: FontWeight.w900,
+              fontSize: 17,
             ),
             suffixIcon: IconButton(
                 onPressed: () {},
