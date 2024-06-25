@@ -30,7 +30,7 @@ class CustomTextField extends StatelessWidget {
       style: style ??
           AppStyles.sylesPoppinsSemiBold24.copyWith(
             color: const Color(0xff07122E),
-            fontSize: 18,
+            fontSize: 16,
           ),
       decoration: InputDecoration(
         suffixIcon: suffixIcon,

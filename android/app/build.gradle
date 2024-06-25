@@ -1,5 +1,20 @@
+buildscript {
+    ext.kotlin_version = '1.8.22' // تحديد الإصدار الموحد
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
@@ -38,7 +53,7 @@ android {
         applicationId = "com.example.dalel_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
@@ -55,4 +70,11 @@ android {
 
 flutter {
     source = "../.."
+}
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        if (details.requested.group == 'org.jetbrains.kotlin') {
+            details.useVersion '1.8.22'
+        }
+    }
 }

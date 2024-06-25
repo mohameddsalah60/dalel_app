@@ -1,5 +1,7 @@
 import 'package:dalel_app/core/utils/app_colors.dart';
+import 'package:dalel_app/features/auth/presentation/auth_cubit/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomCheckBox extends StatefulWidget {
   const CustomCheckBox({
@@ -19,6 +21,8 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
       onChanged: (value) {
         setState(() {
           boolValue = value;
+          BlocProvider.of<AuthCubit>(context)
+              .updateTermsAndConditionCheckBox(newValue: value);
         });
       },
       shape: RoundedRectangleBorder(

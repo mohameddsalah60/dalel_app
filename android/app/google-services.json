@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "377056267457",
+    "project_id": "dalel-59e9d",
+    "storage_bucket": "dalel-59e9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377056267457:android:5e26f6c70abea66d8c9840",
+        "android_client_info": {
+          "package_name": "com.example.dalel_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_Y3Y8ju-q-k-AHuf7AEU6f82z3G7jscE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377056267457:android:75a9da9a7b5651748c9840",
+        "android_client_info": {
+          "package_name": "com.example.dalelapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_Y3Y8ju-q-k-AHuf7AEU6f82z3G7jscE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377056267457:android:04d0597b3fcf48b68c9840",
+        "android_client_info": {
+          "package_name": "com.mohamedsalah.dalel_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_Y3Y8ju-q-k-AHuf7AEU6f82z3G7jscE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
