@@ -1,4 +1,5 @@
 import 'package:dalel_app/core/utils/app_strings.dart';
+import 'package:dalel_app/core/utils/app_styles.dart';
 import 'package:dalel_app/core/widgets/custom_button.dart';
 import 'package:dalel_app/core/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,9 @@ class CustomSignupForm extends StatelessWidget {
           CustomTextField(
             labelText: 'Password',
             obscureText: true,
+            style: AppStyles.sylesPoppinsSemiBold24.copyWith(
+              fontWeight: FontWeight.w900,
+            ),
             suffixIcon: IconButton(
                 onPressed: () {},
                 icon: const Icon(

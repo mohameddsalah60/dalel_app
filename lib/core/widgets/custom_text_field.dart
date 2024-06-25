@@ -8,11 +8,13 @@ class CustomTextField extends StatelessWidget {
       this.labelText,
       this.onChanged,
       this.obscureText,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.style});
   final String? labelText;
   final void Function(String)? onChanged;
   final bool? obscureText;
   final Widget? suffixIcon;
+  final TextStyle? style;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -25,9 +27,10 @@ class CustomTextField extends StatelessWidget {
         return null;
       },
       onChanged: onChanged,
-      style: AppStyles.sylesPoppinsRegular14.copyWith(
-        color: const Color(0xff07122E),
-      ),
+      style: style ??
+          AppStyles.sylesPoppinsRegular14.copyWith(
+            color: const Color(0xff07122E),
+          ),
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         labelText: labelText,

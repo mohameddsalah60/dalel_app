@@ -44,6 +44,9 @@ class OnBoardingActions extends StatelessWidget {
                 text: 'Login Now!',
                 textColor: AppColors.kBlackColor,
                 background: WidgetStateColor.transparent,
+                onPressed: () {
+                  GoRouter.of(context).pushReplacement(AppRouter.kSignIn);
+                },
               )
             : const SizedBox(),
       ],
