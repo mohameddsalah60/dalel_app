@@ -14,6 +14,7 @@ class CustomCheckBox extends StatefulWidget {
 
 class _CustomCheckBoxState extends State<CustomCheckBox> {
   bool? boolValue = false;
+
   @override
   Widget build(BuildContext context) {
     return Checkbox(
@@ -21,8 +22,10 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
       onChanged: (value) {
         setState(() {
           boolValue = value;
-          BlocProvider.of<AuthCubit>(context)
-              .updateTermsAndConditionCheckBox(newValue: value);
+          if (value != null) {
+            BlocProvider.of<AuthCubit>(context)
+                .updateTermsAndConditionCheckBox(newValue: value);
+          }
         });
       },
       shape: RoundedRectangleBorder(

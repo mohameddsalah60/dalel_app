@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_state.dart';
@@ -22,6 +23,8 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress!,
         password: password!,
       );
+      termsAndConditionCheckBoxValue = false;
+
       emit(AuthSignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -36,9 +39,11 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void updateTermsAndConditionCheckBox({required newValue}) {
-    termsAndConditionCheckBoxValue = newValue;
-    emit(TermsAndConditionUpdateState());
+  void updateTermsAndConditionCheckBox({required bool? newValue}) {
+    if (newValue != null) {
+      termsAndConditionCheckBoxValue = newValue;
+      emit(TermsAndConditionUpdateState());
+    }
   }
 
   void obscurePasswordText() {
