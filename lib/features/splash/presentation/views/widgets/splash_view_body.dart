@@ -4,6 +4,7 @@ import 'package:dalel_app/core/services/service_locator.dart';
 import 'package:dalel_app/core/utils/app_router.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/utils/app_styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -25,13 +26,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void isVisisted() {
     bool isOnBoardingVisisted =
         getIt<CacheHelper>().getDataBool(key: kIsOnBoardingVisited) ?? false;
-    bool isLogin =
-        getIt<CacheHelper>().getDataBool(key: kIsSuccessLogin) ?? false;
     if (isOnBoardingVisisted == true) {
-      if (isLogin == false) {
+      if (FirebaseAuth.instance.currentUser == null) {
         delayedGoRouter(path: AppRouter.kSignUp);
       } else {
-        delayedGoRouter(path: AppRouter.kSignIn);
+        FirebaseAuth.instance.currentUser!.emailVerified == true
+            ? delayedGoRouter(path: AppRouter.kHomeView)
+            : delayedGoRouter(path: AppRouter.kSignIn);
       }
     } else {
       delayedGoRouter(path: AppRouter.kOnBoarding);

@@ -1,7 +1,4 @@
-import 'package:dalel_app/constants.dart';
-import 'package:dalel_app/core/database/cache/cache_helper.dart';
 import 'package:dalel_app/core/functions/custom_snack%20_bar.dart';
-import 'package:dalel_app/core/services/service_locator.dart';
 import 'package:dalel_app/core/utils/app_colors.dart';
 import 'package:dalel_app/core/utils/app_router.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
@@ -25,8 +22,6 @@ class CustomSigninForm extends StatelessWidget {
         if (state is AuthSignInSuccessState) {
           if (FirebaseAuth.instance.currentUser!.emailVerified) {
             GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
-            await getIt<CacheHelper>()
-                .saveData(key: kIsSuccessLogin, value: true);
           } else {
             customSnackBar(
               text: "Please Verify Your Account",

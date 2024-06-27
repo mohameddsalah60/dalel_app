@@ -24,8 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress!,
         password: password!,
       );
-      termsAndConditionCheckBoxValue = false;
-
+      verifyEmail();
       emit(AuthSignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -34,6 +33,10 @@ class AuthCubit extends Cubit<AuthState> {
       } else if (e.code == 'email-already-in-use') {
         emit(AuthSignUpFailureState(
             errMessage: 'The account already exists for that email.'));
+      } else if (e.code == 'invalid-email') {
+        emit(AuthSignUpFailureState(errMessage: 'The email is invalid.'));
+      } else {
+        emit(AuthSignUpFailureState(errMessage: e.code));
       }
     } catch (e) {
       emit(AuthSignUpFailureState(errMessage: e.toString()));
@@ -47,6 +50,10 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> verifyEmail() async {
+    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+  }
+
   void obscurePasswordText() {
     if (obscurePasswordTextValue == true) {
       obscurePasswordTextValue = false;
@@ -58,7 +65,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signInWithEmailAndPassword() async {
     emit(AuthSignInLoadingState());
-
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailAddress!,
@@ -72,6 +78,9 @@ class AuthCubit extends Cubit<AuthState> {
       } else if (e.code == 'wrong-password') {
         emit(AuthSignInFailureState(
             errMessage: 'Wrong password provided for that user.'));
+      } else {
+        emit(AuthSignInFailureState(
+            errMessage: 'Check your Email and password!'));
       }
     } catch (e) {
       emit(AuthSignInFailureState(errMessage: e.toString()));
