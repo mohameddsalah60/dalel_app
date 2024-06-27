@@ -1,5 +1,6 @@
 import 'package:dalel_app/core/services/service_locator.dart';
 import 'package:dalel_app/features/auth/presentation/auth_cubit/cubit/auth_cubit.dart';
+import 'package:dalel_app/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:dalel_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:dalel_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:dalel_app/features/home/presentation/views/home_view.dart';
@@ -12,7 +13,9 @@ abstract class AppRouter {
   static const kOnBoarding = '/onBoarding';
   static const kSignUp = '/signUp';
   static const kSignIn = '/signIn';
-  static const kHomeView = '/homeView';
+  static const kHomeView = '/home';
+  static const kForgotPassword = '/forgotPassword';
+
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -40,6 +43,10 @@ abstract class AppRouter {
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
+        path: kForgotPassword,
+        builder: (context, state) => const ForgotPasswordView(),
       ),
     ],
   );

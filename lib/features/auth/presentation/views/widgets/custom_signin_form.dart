@@ -76,12 +76,17 @@ class CustomSigninForm extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    AppStrings.forgotPassword,
-                    style: AppStyles.sylesPoppinsSemiBold24.copyWith(
-                      fontSize: 14,
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kForgotPassword);
+                  },
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      AppStrings.forgotPassword,
+                      style: AppStyles.sylesPoppinsSemiBold24.copyWith(
+                        fontSize: 14,
+                      ),
                     ),
                   ),
                 ),

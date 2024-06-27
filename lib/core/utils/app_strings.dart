@@ -66,6 +66,9 @@ abstract class AppStrings {
       verificationNow = "Verification Now",
       resendCode = "Resend Code",
       verifyAccount = "Verify Account",
+      sendVerifyCode = "Send Verification Code",
+      passwordResetInstruction =
+          "Enter your registered email below to receive password reset instruction",
       enter4DigitCodeWeHaveSentTo = "Enter 4 digit code we have sent to ",
       haventReceivedVerificationCode = "Haven’t received verification code?";
 }
