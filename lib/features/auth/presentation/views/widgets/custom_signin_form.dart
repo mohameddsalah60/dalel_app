@@ -4,6 +4,7 @@ import 'package:dalel_app/core/utils/app_router.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/utils/app_styles.dart';
 import 'package:dalel_app/core/widgets/custom_button.dart';
+import 'package:dalel_app/core/widgets/custom_progress_indicator.dart';
 import 'package:dalel_app/core/widgets/custom_text_field.dart';
 import 'package:dalel_app/features/auth/presentation/auth_cubit/cubit/auth_cubit.dart';
 import 'package:dalel_app/features/auth/presentation/views/widgets/have_an_account_widget.dart';
@@ -68,9 +69,11 @@ class CustomSigninForm extends StatelessWidget {
                       onPressed: () {
                         authCubit.obscurePasswordText();
                       },
-                      icon: const Icon(
-                        Icons.visibility_outlined,
-                        color: Color(0xff999999),
+                      icon: Icon(
+                        authCubit.obscurePasswordTextValue!
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                        color: const Color(0xff999999),
                       )),
                 ),
                 const SizedBox(
@@ -94,9 +97,7 @@ class CustomSigninForm extends StatelessWidget {
                   height: 102,
                 ),
                 state is AuthSignInLoadingState
-                    ? CircularProgressIndicator(
-                        color: AppColors.kPrimaryColor,
-                      )
+                    ? const CustomProgressIndicator()
                     : CustomButton(
                         text: AppStrings.signIn,
                         onPressed: () {
