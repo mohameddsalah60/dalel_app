@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dalel_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -25,22 +27,27 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress!,
         password: password!,
       );
-      verifyEmail();
+      await verifyEmail();
+      await addUserProfile();
       emit(AuthSignUpSuccessState());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        emit(AuthSignUpFailureState(
-            errMessage: 'The password provided is too weak.'));
-      } else if (e.code == 'email-already-in-use') {
-        emit(AuthSignUpFailureState(
-            errMessage: 'The account already exists for that email.'));
-      } else if (e.code == 'invalid-email') {
-        emit(AuthSignUpFailureState(errMessage: 'The email is invalid.'));
-      } else {
-        emit(AuthSignUpFailureState(errMessage: e.code));
-      }
+      _handelExceptionSignUpFirebase(e);
     } catch (e) {
       emit(AuthSignUpFailureState(errMessage: e.toString()));
+    }
+  }
+
+  void _handelExceptionSignUpFirebase(FirebaseAuthException e) {
+    if (e.code == 'weak-password') {
+      emit(AuthSignUpFailureState(
+          errMessage: 'The password provided is too weak.'));
+    } else if (e.code == 'email-already-in-use') {
+      emit(AuthSignUpFailureState(
+          errMessage: 'The account already exists for that email.'));
+    } else if (e.code == 'invalid-email') {
+      emit(AuthSignUpFailureState(errMessage: 'The email is invalid.'));
+    } else {
+      emit(AuthSignUpFailureState(errMessage: e.code));
     }
   }
 
@@ -96,5 +103,15 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(AuthForgotPasswordFailureState(errMessage: e.toString()));
     }
+  }
+
+  Future<void> addUserProfile() async {
+    CollectionReference users =
+        FirebaseFirestore.instance.collection(kFireStoreCollection);
+    await users.add({
+      'email': emailAddress,
+      'first_name': firstName,
+      'last_name': lastName,
+    });
   }
 }

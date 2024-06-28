@@ -100,10 +100,10 @@ class CustomSigninForm extends StatelessWidget {
                     ? const CustomProgressIndicator()
                     : CustomButton(
                         text: AppStrings.signIn,
-                        onPressed: () {
+                        onPressed: () async {
                           if (authCubit.signInFormKey.currentState!
                               .validate()) {
-                            authCubit.signInWithEmailAndPassword();
+                            await authCubit.signInWithEmailAndPassword();
                           }
                         },
                       ),
