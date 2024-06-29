@@ -22,7 +22,7 @@ class CustomSigninForm extends StatelessWidget {
       listener: (context, state) async {
         if (state is AuthSignInSuccessState) {
           if (FirebaseAuth.instance.currentUser!.emailVerified) {
-            GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+            GoRouter.of(context).pushReplacement(AppRouter.kHomeNavBarWidget);
           } else {
             customSnackBar(
               text: "Please Verify Your Account",

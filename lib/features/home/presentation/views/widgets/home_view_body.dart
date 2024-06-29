@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'custom_appbar_home_view.dart';
-import 'historical_periods_section.dart';
+import 'home_sections/historical_periods_section.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});

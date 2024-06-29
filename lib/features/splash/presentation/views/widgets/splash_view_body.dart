@@ -31,7 +31,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         delayedGoRouter(path: AppRouter.kSignUp);
       } else {
         FirebaseAuth.instance.currentUser!.emailVerified == true
-            ? delayedGoRouter(path: AppRouter.kHomeView)
+            ? delayedGoRouter(path: AppRouter.kHomeNavBarWidget)
             : delayedGoRouter(path: AppRouter.kSignIn);
       }
     } else {

@@ -25,7 +25,7 @@ class HistoricalPeriodsSection extends StatelessWidget {
             )),
             Expanded(
                 child: CustomCategoryHeaderitem(
-              text: 'Islamic Era ',
+              text: 'Islamic Era',
               img: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
             )),
           ],

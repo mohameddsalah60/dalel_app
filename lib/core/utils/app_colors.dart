@@ -11,4 +11,5 @@ abstract class AppColors {
   static Color kDeepGreyColor = const Color(0xff6F6460);
   static Color kDeepGreyColor2 = const Color(0xff0F0D23).withOpacity(.2);
   static Color kDeepGreyColor3 = const Color(0xffB4B4B4);
+  static Color kInactiveColorPrimary = const Color(0xff9B6C59);
 }

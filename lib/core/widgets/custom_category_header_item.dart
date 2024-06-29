@@ -29,7 +29,7 @@ class CustomCategoryHeaderitem extends StatelessWidget {
               const SizedBox(
                 width: 16,
               ),
-              Expanded(
+              Flexible(
                 child: Image.network(
                   img,
                   height: 64,
